@@ -19,7 +19,10 @@
 }
 
 .App-horiz-layout {
-	
+	display: grid;
+  grid-auto-flow: column;
+  justify-content: center;
+  grid-column-gap: 5%;
 }
 
 .Profile-link {
