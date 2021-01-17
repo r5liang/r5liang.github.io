@@ -23,6 +23,7 @@
   grid-auto-flow: column;
   justify-content: center;
   grid-column-gap: 5%;
+  white-space: nowrap;
 }
 
 .Profile-link {
