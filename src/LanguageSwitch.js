@@ -12,29 +12,27 @@ type Props = {
 
 const getLanguageDisplay = (l: Language) => {
   switch (l) {
-    case "en":
-      return "English";
-    case "zh":
-      return "中文";
-    case "jp":
-      return "日本語";
+    case 'en':
+      return 'English';
+    case 'zh':
+      return '中文';
+    case 'jp':
+      return '日本語';
     default:
-      throw new Error("wtf must be tripping");
+      throw new Error('wtf must be tripping');
   }
 };
 
 function LanguageSwitch(props: Props): React.Node {
-  const {currLanguage, newLanguage, setLanguage} = props;
+  const { currLanguage, newLanguage, setLanguage } = props;
 
-  return currLanguage === newLanguage ? 
-    getLanguageDisplay(newLanguage) : 
-    <a 
-      className="Profile-link" 
-      href="javascript:void(0)" 
-      onClick={() => setLanguage(newLanguage)}
-    >
+  return currLanguage === newLanguage ? (
+    getLanguageDisplay(newLanguage)
+  ) : (
+    <a className="Profile-link" href="javascript:void(0)" onClick={() => setLanguage(newLanguage)}>
       {getLanguageDisplay(newLanguage)}
-    </a>;
+    </a>
+  );
 }
 
 export default LanguageSwitch;
