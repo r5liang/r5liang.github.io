@@ -158,7 +158,7 @@ function WishCalculator(props: { localize: (key: string) => string }): React.Nod
               type="number"
               className="Text-input"
               value={totalWishes}
-              onChange={(event) => setTotalWishes(Math.max(0, Math.min(2000, Math.trunc(event.target.value))))}
+              onChange={(event) => setTotalWishes(Math.max(0, Math.min(5000, Math.trunc(event.target.value))))}
             />
           </div>
           <div className="App-horiz-layout-unspaced">
@@ -167,7 +167,7 @@ function WishCalculator(props: { localize: (key: string) => string }): React.Nod
               type="number"
               className="Text-input"
               value={desiredCopies}
-              onChange={(event) => setDesiredCopies(Math.max(1, Math.min(7, Math.trunc(event.target.value))))}
+              onChange={(event) => setDesiredCopies(Math.max(1, Math.min(100, Math.trunc(event.target.value))))}
             />
           </div>
           <div className="App-horiz-layout-disabled">
