@@ -17,8 +17,7 @@ import { Helmet } from 'react-helmet';
 
 export type Language = 'en' | 'zh' | 'jp';
 
-function Main(props: { localize: (key: string) => string}): React.Node {
-
+function Main(props: { localize: (key: string) => string }): React.Node {
   const localize = props.localize;
 
   // const MAP = {
@@ -78,7 +77,7 @@ function Main(props: { localize: (key: string) => string}): React.Node {
 
 function App(): React.Node {
   const [language, setLanguage] = useState('en');
-  
+
   const localizeHelper = (key: string) => {
     switch (language) {
       case 'en':
@@ -91,8 +90,8 @@ function App(): React.Node {
         throw new Error('wtf must be tripping');
     }
   };
-  
-    // fall back to English if a translation is missing
+
+  // fall back to English if a translation is missing
   const localize = (key: string) => {
     return localizeHelper(key) || EN[key];
   };

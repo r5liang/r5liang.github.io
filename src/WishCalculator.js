@@ -6,7 +6,7 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet';
 // import mona from './mona.png';
 
-function WishCalculator(props: {localize: (key: string) => string}): React.Node {
+function WishCalculator(props: { localize: (key: string) => string }): React.Node {
   const [totalWishes, setTotalWishes] = useState<int>(0);
   const [desiredCopies, setDesiredCopies] = useState<int>(0);
   const [highestTotalWishes, setHighestTotalWishes] = useState<int>(0);

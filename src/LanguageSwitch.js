@@ -25,7 +25,7 @@ const getLanguageDisplay = (l: Language) => {
 
 function LanguageSwitch(props: Props): React.Node {
   const { currLanguage, newLanguage, setLanguage } = props;
-  
+
   return currLanguage === newLanguage ? (
     getLanguageDisplay(newLanguage)
   ) : (
