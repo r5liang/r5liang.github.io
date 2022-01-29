@@ -115,8 +115,8 @@ function WishCalculator(props: { language: Language }): React.Node {
     setMemoizeState(memoize);
     setMemoizeGuaranteedState(memoizeGuaranteed);
 
-    console.table(memoize);
-    console.log(desiredCopies, totalWishes);
+    // console.table(memoize);
+    // console.log(desiredCopies, totalWishes);
     setResult(getMemoize(desiredCopies - 1, totalWishes));
   };
 
@@ -125,27 +125,23 @@ function WishCalculator(props: { language: Language }): React.Node {
 
   useEffect(() => {
     if (result >= 0) {
-      setDisplayResult(
-        `You have a ${resultNearGuaranteed ? '>99.99' : parseFloat((result * 100).toPrecision(4))}% ${
-          result < 0.5 && result > 0 ? ' (1 in ' + oneIn + ')' : ''
-        } chance of getting ${desiredCopies} copies in ${totalWishes} wishes.`,
+      let formattedDisplayResult = (
+        <div>
+          You have a{' '}
+          <b>
+            {resultNearGuaranteed ? '>99.99' : parseFloat((result * 100).toPrecision(4))}%
+            {result < 0.5 && result > 0 ? ' (1 in ' + oneIn + ')' : ''}
+          </b>{' '}
+          chance of getting{' '}
+          <b>
+            {desiredCopies} copies in {totalWishes} wishes
+          </b>
+          .
+        </div>
       );
+      setDisplayResult(formattedDisplayResult);
     }
   }, [result]);
-
-  // const displayResult =
-  // result >= 0
-  // ? `You have a ${resultNearGuaranteed ? '>99.99' : parseFloat((result * 100).toPrecision(4))}% ${
-  // result < 0.5 ? ' (1 in ' + oneIn + ')' : ''
-  // } chance of getting ${desiredCopies} copies in ${totalWishes} wishes.`
-  // : ;
-
-  // const calcBackground = {
-  // backgroundImage: mona,
-  // backgroundSize: 'cover',
-  // backgroundRepeat: 'no-repeat',
-  // backgroundPosition: 'center center',
-  // };
 
   return (
     <>
@@ -173,20 +169,22 @@ function WishCalculator(props: { language: Language }): React.Node {
               onChange={(event) => setDesiredCopies(Math.max(1, Math.min(7, Math.trunc(event.target.value))))}
             />
           </div>
-          <div className="App-horiz-layout-unspaced">
+          <div className="App-horiz-layout-disabled">
             <label>Wish base success rate: </label>
-            <input type="number" className="Text-input" value={0.006} disabled />
+            <input type="number" className="Text-input-disabled" value={0.006} disabled />
           </div>
-          <div className="App-horiz-layout-unspaced">
+          <div className="App-horiz-layout-disabled">
             <label>Soft pity: </label>
-            <input type="number" className="Text-input" value={74} disabled />
+            <input type="number" className="Text-input-disabled" value={74} disabled />
           </div>
-          <div className="App-horiz-layout-unspaced">
+          <div className="App-horiz-layout-disabled">
             <label>Success rate increase per wish beginning at soft pity:</label>
-            <input type="number" className="Text-input" value={0.06} disabled />
+            <input type="number" className="Text-input-disabled" value={0.06} disabled />
           </div>
           <div className="App-horiz-layout-unspaced">
-            <button onClick={handleClick}>Submit</button>
+            <button class="Submit-button" onClick={handleClick}>
+              Calculate
+            </button>
           </div>
           <div className="App-horiz-layout-unspaced">{displayResult}</div>
         </div>

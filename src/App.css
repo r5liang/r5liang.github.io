@@ -39,6 +39,8 @@
   flex-grow: 1;
   height: 100%;
   width: 100%;
+  background-color: #121212;
+  color: #fafafa;
 
   background-image: url('./mona.png');
   background-size: auto 100%;
@@ -62,6 +64,19 @@
   white-space: nowrap;
   margin-top: 0.25em;
   margin-left: max(10vw, 10%);
+}
+
+.App-horiz-layout-disabled {
+  text-align: left;
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: flex-start;
+  white-space: nowrap;
+  margin-top: 0.25em;
+  margin-left: max(10vw, 10%);
+  /* font-size: calc(8px + 1vmin); */
+  font-size: calc(10px + 2vmin);
+  font-style: italic;
 }
 
 .Calc-horiz-layout-left {
@@ -96,4 +111,29 @@
 
 .Text-input {
   font-size: calc(10px + 2vmin);
+  width: calc(20px + 10vw);
+  margin-left: calc(1vmin);
+}
+
+.Text-input-disabled {
+  /* font-size: calc(8px + 1vmin); */
+  font-size: calc(10px + 2vmin);
+  font-style: italic;
+  width: calc(50px + 10vw);
+  margin-left: calc(1vmin);
+}
+
+.Submit-button {
+  font-size: calc(10px + 2vmin);
+  background-color: #4caf50;
+  padding: 2vh 3vw;
+  color: #fafafa;
+  border-radius: 2vh;
+}
+
+.Submit-button:hover {
+  /* color: black; */
+  color: #fafafa;
+  background-color: #3b873f;
+  /* border: 2px solid azure; */
 }
