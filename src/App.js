@@ -58,10 +58,11 @@ function Main(props: { language: Language, setUseBackground: (val: boolean) => v
         <Helmet>
           <title>Richard's site</title>
         </Helmet>
+        <div className="App-horiz-layout">
+          <img src={angery_react} className="App-logo" alt="angery react" />
+        </div>
 
-        <img src={angery_react} className="App-logo" alt="angery react" />
-
-        <div>{localize('intro')}</div>
+        <div className="App-horiz-layout">{localize('intro')}</div>
         <div className="App-horiz-layout">
           <a
             className="Profile-link"
