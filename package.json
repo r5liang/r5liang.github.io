@@ -19,7 +19,7 @@
     "flow": "flow",
     "prettier-watch": "onchange \"**/*\" -- npx prettier --write --ignore-unknown {{changed}}",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -b main -d build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

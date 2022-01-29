@@ -4,7 +4,7 @@ import * as React from 'react';
 import type Language from './App';
 import './App.css';
 
-type Props = {
+type LanguageSwitchProps = {
   currLanguage: Language,
   newLanguage: Language,
   setLanguage: (language: Language) => void,
@@ -25,7 +25,7 @@ const getLanguageDisplay = (l: Language) => {
 
 function LanguageSwitch(props: Props): React.Node {
   const { currLanguage, newLanguage, setLanguage } = props;
-
+  
   return currLanguage === newLanguage ? (
     getLanguageDisplay(newLanguage)
   ) : (

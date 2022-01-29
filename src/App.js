@@ -2,12 +2,13 @@
 
 import angery_react from './angery_react.jpg';
 import './App.css';
-import { useState } from 'react';
-import * as React from 'react';
 import EN from './en.json';
 import ZH from './zh.json';
 import JP from './jp.json';
 import LanguageSwitch from './LanguageSwitch';
+
+import { useState } from 'react';
+import * as React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import WishCalculator from './WishCalculator';
 import { Helmet } from 'react-helmet';
@@ -16,23 +17,9 @@ import { Helmet } from 'react-helmet';
 
 export type Language = 'en' | 'zh' | 'jp';
 
-function Main(props: { language: Language, setUseBackground: (val: boolean) => void }): React.Node {
-  const localizeHelper = (key: string) => {
-    switch (props.language) {
-      case 'en':
-        return EN[key];
-      case 'zh':
-        return ZH[key];
-      case 'jp':
-        return JP[key];
-      default:
-        throw new Error('wtf must be tripping');
-    }
-  };
-  // fall back to English if a translation is missing
-  const localize = (key: string) => {
-    return localizeHelper(key) || EN[key];
-  };
+function Main(props: { localize: (key: string) => string}): React.Node {
+
+  const localize = props.localize;
 
   // const MAP = {
   // name: "hi",
@@ -91,6 +78,24 @@ function Main(props: { language: Language, setUseBackground: (val: boolean) => v
 
 function App(): React.Node {
   const [language, setLanguage] = useState('en');
+  
+  const localizeHelper = (key: string) => {
+    switch (language) {
+      case 'en':
+        return EN[key];
+      case 'zh':
+        return ZH[key];
+      case 'jp':
+        return JP[key];
+      default:
+        throw new Error('wtf must be tripping');
+    }
+  };
+  
+    // fall back to English if a translation is missing
+  const localize = (key: string) => {
+    return localizeHelper(key) || EN[key];
+  };
 
   return (
     // A <Routes> looks through all its children <Route>
@@ -103,8 +108,8 @@ function App(): React.Node {
       <div className="Main-container">
         <Router>
           <Routes>
-            <Route exact path="/" element={<Main language={language} />} />
-            <Route path="/calc" element={<WishCalculator language={language} />} />
+            <Route exact path="/" element={<Main localize={localize} />} />
+            <Route path="/calc" element={<WishCalculator localize={localize} />} />
           </Routes>
         </Router>
       </div>

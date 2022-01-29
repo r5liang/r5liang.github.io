@@ -6,13 +6,14 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet';
 // import mona from './mona.png';
 
-function WishCalculator(props: { language: Language }): React.Node {
+function WishCalculator(props: {localize: (key: string) => string}): React.Node {
   const [totalWishes, setTotalWishes] = useState<int>(0);
   const [desiredCopies, setDesiredCopies] = useState<int>(0);
   const [highestTotalWishes, setHighestTotalWishes] = useState<int>(0);
   const [highestCopies, setHighestCopies] = useState<int>(0);
   const [result, setResult] = useState<num>(-1);
   const [displayResult, setDisplayResult] = useState<React.Node>('\xa0');
+  const localize = props.localize;
 
   const [memoizeState, setMemoizeState] = useState<Array<Array<?num>>>([]);
   const [memoizeGuaranteedState, setMemoizeGuaranteedState] = useState<Array<Array<?num>>>([]);
@@ -152,7 +153,7 @@ function WishCalculator(props: { language: Language }): React.Node {
         <div className="Calc-horiz-layout-left">
           <div>Genshin character event wish confidence intervals</div>
           <div className="App-horiz-layout-unspaced">
-            {'Number of wishes you have: '}{' '}
+            {localize('numberofwishes')}{' '}
             <input
               type="number"
               className="Text-input"
