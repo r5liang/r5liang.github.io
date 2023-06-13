@@ -69,6 +69,9 @@ function Main(props: { localize: (key: string) => string }): React.Node {
           <a className="Profile-link" href="https://twitter.com/angery_rliang" target="_blank" rel="noreferrer">
             {localize('twitter')}
           </a>
+          <a className="Profile-link" href="https://www.instagram.com/rliang_official/" target="_blank" rel="noreferrer">
+            {localize('instagram')}
+          </a>
         </div>
       </div>
     </>

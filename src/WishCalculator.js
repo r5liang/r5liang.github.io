@@ -13,6 +13,7 @@ function WishCalculator(props: { localize: (key: string) => string }): React.Nod
   const [highestCopies, setHighestCopies] = useState<int>(0);
   const [result, setResult] = useState<num>(-1);
   const [displayResult, setDisplayResult] = useState<React.Node>('\xa0');
+  const [isCalculating, setIsCalculating] = useState<bool>(false);
   const localize = props.localize;
 
   const [memoizeState, setMemoizeState] = useState<Array<Array<?num>>>([]);
@@ -43,6 +44,7 @@ function WishCalculator(props: { localize: (key: string) => string }): React.Nod
   };
 
   const handleClick = () => {
+    setIsCalculating(true);
     let memoize = Array(desiredCopies)
       .fill()
       .map(() => Array(totalWishes).fill(-1));
@@ -119,6 +121,7 @@ function WishCalculator(props: { localize: (key: string) => string }): React.Nod
     // console.table(memoize);
     // console.log(desiredCopies, totalWishes);
     setResult(getMemoize(desiredCopies - 1, totalWishes));
+    setIsCalculating(false);
   };
 
   const resultNearGuaranteed = result > 0.9999 && result < 1;
@@ -158,7 +161,7 @@ function WishCalculator(props: { localize: (key: string) => string }): React.Nod
               type="number"
               className="Text-input"
               value={totalWishes}
-              onChange={(event) => setTotalWishes(Math.max(0, Math.min(5000, Math.trunc(event.target.value))))}
+              onChange={(event) => setTotalWishes(Math.max(0, Math.min(50000, Math.trunc(event.target.value))))}
             />
           </div>
           <div className="App-horiz-layout-unspaced">
@@ -183,8 +186,8 @@ function WishCalculator(props: { localize: (key: string) => string }): React.Nod
             <input type="number" className="Text-input-disabled" value={0.06} disabled />
           </div>
           <div className="App-horiz-layout-unspaced">
-            <button class="Submit-button" onClick={handleClick}>
-              Calculate
+            <button class="Submit-button" onClick={handleClick} disabled={isCalculating}>
+              {isCalculating ? 'Calculating...' : 'Calculate'}
             </button>
           </div>
           <div className="App-horiz-layout-unspaced">{displayResult}</div>
